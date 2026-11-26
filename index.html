@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENVA | Modern Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="announcement">FREE SHIPPING ON ORDERS OVER ₹499</div>
+
+    <header class="site-header">
+        <a class="brand" href="#">ZENVA<span>.</span></a>
+
+        <nav class="main-nav">
+            <a href="#products" data-category-link="All">SHOP ALL</a>
+            <a href="#products" data-category-link="Men">MEN</a>
+            <a href="#products" data-category-link="Women">WOMEN</a>
+            <a href="#products" data-category-link="Accessories">ACCESSORIES</a>
+        </nav>
+
+        <div class="header-actions">
+            <button id="account-button">ACCOUNT</button>
+            <button id="wishlist-button">♡ WISHLIST (<span id="wishlist-count">0</span>)</button>
+            <button id="cart-button">BAG (<span id="cart-count">0</span>)</button>
+            <button id="admin-button">ADMIN</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">THE NEW EVERYDAY</p>
+                <h1>Style that feels<br><em>like you.</em></h1>
+                <p>Thoughtful essentials. Modern silhouettes. Made for wherever life takes you.</p>
+                <a class="button" href="#products">EXPLORE COLLECTION ↗️</a>
+            </div>
+        </section>
+
+        <section class="collection" id="products">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CURATED FOR YOU</p>
+                    <h2>Find your <em>everyday.</em></h2>
+                </div>
+                <p>Versatile pieces, considered details, and a little something different.</p>
+            </div>
+
+            <div class="shop-toolbar">
+                <div class="category-tabs">
+                    <button class="category-button active" data-category="All">All</button>
+                    <button class="category-button" data-category="Men">Men</button>
+                    <button class="category-button" data-category="Women">Women</button>
+                    <button class="category-button" data-category="Accessories">Accessories</button>
+                </div>
+
+                <input id="search-input" type="search" placeholder="Search products...">
+            </div>
+
+            <div class="filter-section">
+                <label>MAXIMUM PRICE
+          <select id="price-filter">
+            <option value="all">All prices</option>
+            <option value="1000">Under ₹1,000</option>
+            <option value="2000">Under ₹2,000</option>
+            <option value="3000">Under ₹3,000</option>
+            <option value="5000">Under ₹5,000</option>
+          </select>
+        </label>
+
+                <label>SIZE
+          <select id="size-filter">
+            <option value="all">All sizes</option>
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+            <option value="XL">Extra Large</option>
+          </select>
+        </label>
+
+                <label>COLOUR
+          <select id="color-filter">
+            <option value="all">All colours</option>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Beige">Beige</option>
+            <option value="Blue">Blue</option>
+            <option value="Brown">Brown</option>
+          </select>
+        </label>
+
+                <label>SORT BY
+          <select id="sort-filter">
+            <option value="default">Featured</option>
+            <option value="low-high">Price: Low to High</option>
+            <option value="high-low">Price: High to Low</option>
+            <option value="name">Name: A to Z</option>
+          </select>
+        </label>
+
+                <button id="clear-filters">CLEAR FILTERS</button>
+            </div>
+
+            <p id="results-count"></p>
+            <div class="product-grid" id="product-list"></div>
+            <div id="no-results" class="hidden">
+                <h3>No products found.</h3>
+                <p>Try changing your filters.</p>
+            </div>
+        </section>
+
+        <section class="editorial">
+            <div>
+                <p class="eyebrow">LESS, BUT BETTER</p>
+                <h2>Build a wardrobe<br>that <em>works.</em></h2>
+                <p>Easy-to-style favourites for your everyday life.</p>
+                <a href="#products">DISCOVER ZENVA ↗️</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a class="brand" href="#">ZENVA<span>.</span></a>
+        <p>Modern essentials for your everyday.</p>
+        <a href="#" id="footer-orders">My Orders</a>
+        <p>© 2026 ZENVA.STORE.</p>
+    </footer>
+
+    <!-- Shopping Cart -->
+    <div class="overlay" id="cart-overlay"></div>
+
+    <aside class="cart-drawer" id="cart-drawer">
+        <button class="close-button" id="cart-close">×</button>
+        <h2>Shopping Bag</h2>
+        <div id="cart-items"></div>
+        <h3>Subtotal: <span id="cart-total">₹0</span></h3>
+        <button class="button full-width" id="checkout-btn">PROCEED TO CHECKOUT</button>
+    </aside>
+
+    <!-- Product Details -->
+    <div class="modal" id="product-modal">
+        <div class="modal-panel">
+            <button class="close-button modal-close" data-close="product-modal">×</button>
+            <div id="product-detail-content"></div>
+        </div>
+    </div>
+
+    <!-- Login and Registration -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-panel">
+            <button class="close-button modal-close" data-close="auth-modal">×</button>
+            <h2 id="auth-title">Your Account</h2>
+
+            <div class="auth-tabs">
+                <button id="login-tab">LOGIN</button>
+                <button id="register-tab">REGISTER</button>
+            </div>
+
+            <form id="login-form">
+                <input id="login-email" type="email" placeholder="Email" required>
+                <input id="login-password" type="password" placeholder="Password" required>
+                <button class="button">LOGIN</button>
+            </form>
+
+            <form id="register-form" class="hidden">
+                <input id="register-name" placeholder="Full Name" required>
+                <input id="register-email" type="email" placeholder="Email" required>
+                <input id="register-password" type="password" placeholder="Password" required minlength="4">
+                <button class="button">CREATE ACCOUNT</button>
+            </form>
+
+            <button id="logout-button" class="hidden">LOG OUT</button>
+            <p class="fine-print">account only. Do not use a real password.</p>
+        </div>
+    </div>
+
+    <!-- Checkout -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-panel">
+            <button class="close-button modal-close" data-close="checkout-modal">×</button>
+            <h2>Checkout</h2>
+            <div id="checkout-summary"></div>
+
+            <form id="checkout-form">
+                <input id="shipping-name" placeholder="Full Name" required>
+                <input id="shipping-email" type="email" placeholder="Email" required>
+                <input id="shipping-phone" type="tel" placeholder="Phone" required>
+                <textarea id="shipping-address" placeholder="Delivery Address" required></textarea>
+
+                <select id="payment-method">
+          <option>Cash on Delivery</option>
+          <option>UPI (only)</option>
+        </select>
+
+                <button class="button">PLACE ORDER</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Success -->
+    <div class="modal" id="success-modal">
+        <div class="modal-panel">
+            <button class="close-button modal-close" data-close="success-modal">×</button>
+            <h2>Thank You!</h2>
+            <p id="success-message">Your order has been placed.</p>
+            <button class="button" data-close="success-modal">CONTINUE SHOPPING</button>
+        </div>
+    </div>
+
+    <!-- Order History -->
+    <div class="modal" id="orders-modal">
+        <div class="modal-panel wide-panel">
+            <button class="close-button modal-close" data-close="orders-modal">×</button>
+            <h2>Order History</h2>
+            <div id="orders-list"></div>
+        </div>
+    </div>
+
+    <!-- Wishlist -->
+    <div class="modal" id="wishlist-modal">
+        <div class="modal-panel wide-panel">
+            <button class="close-button modal-close" data-close="wishlist-modal">×</button>
+            <h2>My Wishlist ♡</h2>
+            <div id="wishlist-products" class="wishlist-grid"></div>
+        </div>
+    </div>
+
+    <!-- Admin -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-panel wide-panel">
+            <button class="close-button modal-close" data-close="admin-modal">×</button>
+            <h2>Admin Dashboard</h2>
+            <p class="fine-print">This dashboard is not secured.</p>
+            <div id="admin-stats"></div>
+
+            <h3>Add Product</h3>
+            <form id="admin-product-form">
+                <input id="admin-name" placeholder="Product name" required>
+                <input id="admin-price" type="number" min="1" placeholder="Price" required>
+                <select id="admin-category">
+          <option>Men</option>
+          <option>Women</option>
+          <option>Accessories</option>
+        </select>
+                <input id="admin-image" type="url" placeholder="Image URL" required>
+                <button class="button">ADD PRODUCT</button>
+            </form>
+
+            <h3>Products</h3>
+            <div id="admin-product-list"></div>
+            <h3>Recent Orders</h3>
+            <div id="admin-orders"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+</body>
+
+</html>
